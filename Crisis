@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HKBU PRA: 1-Minute PR & Ad Master</title>
+    <title>HKBU PRA: 1-Minute PR &amp; Ad Master</title>
     <style>
         :root {
             --bu-blue: #002D62;
@@ -385,7 +385,7 @@
 <div class="game-container">
     <div class="header">
         <h1>HKBU PRA</h1>
-        <p>1-MINUTE PR & AD MASTER (60秒 PR 與廣告極速挑戰)</p>
+        <p>1-MINUTE PR &amp; AD MASTER (60秒 PR 與廣告極速挑戰)</p>
     </div>
 
     <div class="stats-bar" id="statsBar" style="display: none;">
@@ -456,14 +456,18 @@
 <div class="toast-feedback" id="toast">Feedback message</div>
 
 <script>
-    const tracksData = {
+    /*
+     * 課程代碼對應表（依 HKBU 官方 PRAO 課程手冊）
+     * 所有 PRAO 課程均為香港浸會大學傳理學院「公共關係與廣告」主修科目。
+     */
+    var tracksData = {
         PR: [
             {
                 round: "ROUND 1: 突發公關危機 (Crisis Communication)",
                 desc: "連鎖茶飲店「Boba X」被爆料飲品含異物，Threads 貼文過千轉發！你第一時間會：",
                 options: [
                     { course: "PRAO3006 PR Writing", text: "🔒 刪除所有負面留言並封鎖發帖者", score: -20, feedback: "刪帖引爆網民更強大怒火！違背透明溝通原則。" },
-                    { course: "PRAO3016 Crisis Comm", text: "🔍 20分鐘內發致歉信、公開廚房監控並安排第三方檢驗", score: 20, feedback: "【PRAO3016 應用】快速、透明、負責任，成功平息大眾疑慮！" },
+                    { course: "PRAO4016 Strategic Issues and Crisis Management", text: "🔍 20分鐘內發致歉信、公開廚房監控並安排第三方檢驗", score: 20, feedback: "【PRAO4016 應用】快速、透明、負責任，成功平息大眾疑慮！" },
                     { course: "PRAO3006 PR Writing", text: "📄 發出一篇官樣文章式的標準官方聲明", score: -10, feedback: "官僚回應被指冇誠意。" }
                 ]
             },
@@ -471,36 +475,36 @@
                 round: "ROUND 2: 傳媒與 Stakeholder 應對 (Media Relations)",
                 desc: "記者要求召開突發新聞發布會，現場質問品牌誠信，你打算點應對？",
                 options: [
-                    { course: "PRAO3026 Media Relations", text: "🚫 宣布「不作任何回應 (No Comment)」並推遲發布會", score: -20, feedback: "「No comment」等於默認，報導大幅倒向負面！" },
-                    { course: "PRAO4005 Stakeholder Relations", text: "✉️ 僅向特定友好媒體發送新聞稿", score: 0, feedback: "被其他媒體質疑資訊不全面。" },
-                    { course: "PRAO3026 Media Relations", text: "🎙️ 由發言人現場直播回答提問，並邀請媒體即場參觀中央廚房", score: 20, feedback: "【PRAO3026 應用】主動溝通展現開放態度，贏得傳媒好感！" }
+                    { course: "PRAO4045 Media Relations Writing and Training", text: "🚫 宣布「不作任何回應 (No Comment)」並推遲發布會", score: -20, feedback: "「No comment」等於默認，報導大幅倒向負面！" },
+                    { course: "PRAO3047 CSR and Stakeholder Engagement", text: "✉️ 僅向特定友好媒體發送新聞稿", score: 0, feedback: "被其他媒體質疑資訊不全面。" },
+                    { course: "PRAO4045 Media Relations Writing and Training", text: "🎙️ 由發言人現場直播回答提問，並邀請媒體即場參觀中央廚房", score: 20, feedback: "【PRAO4045 應用】主動溝通展現開放態度，贏得傳媒好感！" }
                 ]
             },
             {
                 round: "ROUND 3: 社群數據監測 (Social Data Analytics)",
                 desc: "網路上出現各種謠言與假新聞，你點樣利用數據精準控火？",
                 options: [
-                    { course: "PRAO3086 Data Analytics", text: "📊 運用 Social Listening 工具分析情感趨勢，針對謠言源頭回應", score: 20, feedback: "【PRAO3086 應用】用數據說話，精準打擊假新聞發源地！" },
+                    { course: "PRAO3086 Data Analytics and Visualization", text: "📊 運用 Social Listening 工具分析情感趨勢，針對謠言源頭回應", score: 20, feedback: "【PRAO3086 應用】用數據說話，精準打擊假新聞發源地！" },
                     { course: "PRAO2006 PR Principles", text: "📢 每隔半小時重複發布同一篇澄清文", score: 0, feedback: "重複資訊洗版，引起視覺疲勞。" },
-                    { course: "PRAO3086 Data Analytics", text: "🤖 聘用網軍喺所有留言區瘋狂洗版", score: -20, feedback: "被網民揭發網軍洗版，信任度跌至谷底！" }
+                    { course: "PRAO3086 Data Analytics and Visualization", text: "🤖 聘用網軍喺所有留言區瘋狂洗版", score: -20, feedback: "被網民揭發網軍洗版，信任度跌至谷底！" }
                 ]
             },
             {
                 round: "ROUND 4: 內部員工溝通 (Internal Communication)",
                 desc: "前線分店員工被顧客質問時不知所措，內部士氣低落，你點處理？",
                 options: [
-                    { course: "PRAO4005 Stakeholder Relations", text: "🤐 嚴禁員工對外討論，否則即時解僱", score: -20, feedback: "內部不滿爆發，員工私下向媒體爆料！" },
-                    { course: "PRAO4005 Stakeholder Relations", text: "💬 1小時內向全體員工發出指引與 Q&A 懶人包，並發放慰問津貼", score: 20, feedback: "【PRAO4005 應用】內部溝通同等重要，穩住前線士氣！" },
-                    { course: "PRAO4015 Agency Management", text: "📧 等事件完全平息後再發內部郵件", score: 0, feedback: "反應過慢，前線員工壓力爆煲。" }
+                    { course: "PRAO3047 CSR and Stakeholder Engagement", text: "🤐 嚴禁員工對外討論，否則即時解僱", score: -20, feedback: "內部不滿爆發，員工私下向媒體爆料！" },
+                    { course: "PRAO3047 CSR and Stakeholder Engagement", text: "💬 1小時內向全體員工發出指引與 Q&A 懶人包，並發放慰問津貼", score: 20, feedback: "【PRAO3047 應用】內部溝通同等重要，穩住前線士氣！" },
+                    { course: "PRAO4035 Agency Management", text: "📧 等事件完全平息後再發內部郵件", score: 0, feedback: "反應過慢，前線員工壓力爆煲。" }
                 ]
             },
             {
                 round: "ROUND 5: 永續與品牌復原 (ESG & CSR)",
                 desc: "要徹底重建大眾對品牌的長遠信任，你打算推行邊個 PR 項目？",
                 options: [
-                    { course: "PRAO4015 Agency Management", text: "💰 派發大量 $10 優惠券刺激短期銷量", score: 10, feedback: "只帶動短期買氣，未能解決誠信問題。" },
-                    { course: "PRAO3016 Crisis Comm", text: "😶 事過境遷，不再提此事", score: -10, feedback: "缺乏長遠復原計畫，品牌印記依然存在。" },
-                    { course: "PRAO3025 CSR Communication", text: "🌿 推行「透明供應鏈」ESG 計畫，每杯茶飲捐款予食品安全基金會", score: 20, feedback: "【PRAO3025 應用】將危機轉化為企業社會責任，重建長遠資產！" }
+                    { course: "PRAO4035 Agency Management", text: "💰 派發大量 $10 優惠券刺激短期銷量", score: 10, feedback: "只帶動短期買氣，未能解決誠信問題。" },
+                    { course: "PRAO4016 Strategic Issues and Crisis Management", text: "😶 事過境遷，不再提此事", score: -10, feedback: "缺乏長遠復原計畫，品牌印記依然存在。" },
+                    { course: "PRAO3047 CSR and Stakeholder Engagement", text: "🌿 推行「透明供應鏈」ESG 計畫，每杯茶飲捐款予食品安全基金會", score: 20, feedback: "【PRAO3047 應用】將危機轉化為企業社會責任，重建長遠資產！" }
                 ]
             }
         ],
@@ -509,9 +513,9 @@
                 round: "ROUND 1: 創意文案反擊 (Content Creation)",
                 desc: "品牌陷入危機，社群出現大量迷因嘲諷，你要點用廣告創意反擊？",
                 options: [
-                    { course: "PRAO3007 Ad Design", text: "📺 播放傳統高高在上的品牌形象電視廣告", score: -10, feedback: "內容離地，Z 世代完全無視。" },
-                    { course: "PRAO3005 Ad Content Creation", text: "🎨 製作「100% 透明製造」極簡短片廣告，用幽默自嘲展現品質承諾", score: 20, feedback: "【PRAO3005 應用】創意高明，巧妙化解網絡嘲諷！" },
-                    { course: "PRAO4037 Narrative Storytelling", text: "🚫 拍片指責競爭對手惡意炒作", score: -20, feedback: "公關災難上加災難，引來全網反感！" }
+                    { course: "PRAO3007 Advertising Design and Visualization", text: "📺 播放傳統高高在上的品牌形象電視廣告", score: -10, feedback: "內容離地，Z 世代完全無視。" },
+                    { course: "PRAO3005 Content Creation in Advertising", text: "🎨 製作「100% 透明製造」極簡短片廣告，用幽默自嘲展現品質承諾", score: 20, feedback: "【PRAO3005 應用】創意高明，巧妙化解網絡嘲諷！" },
+                    { course: "PRAO4037 Narrative and Brand Storytelling", text: "🚫 拍片指責競爭對手惡意炒作", score: -20, feedback: "公關災難上加災難，引來全網反感！" }
                 ]
             },
             {
@@ -520,54 +524,56 @@
                 options: [
                     { course: "PRAO3015 Consumer Perspectives", text: "🎁 宣傳「買茶飲抽最新 iPhone」活動", score: 0, feedback: "無法解決消費者對食品安全的實質擔憂。" },
                     { course: "PRAO3015 Consumer Perspectives", text: "🔍 主打「由農場到杯中」全程 Traceable QR Code 認證廣告", score: 20, feedback: "【PRAO3015 應用】直擊消費者痛點，精準解除心理疑慮！" },
-                    { course: "PRAO2007 Ad Principles", text: "📢 強調「我們是全港銷售第一」", score: -10, feedback: "口號式宣傳在危機期間缺乏說服力。" }
+                    { course: "PRAO2007 Advertising Principles", text: "📢 強調「我們是全港銷售第一」", score: -10, feedback: "口號式宣傳在危機期間缺乏說服力。" }
                 ]
             },
             {
                 round: "ROUND 3: 受眾精準定位 (Audience Measurement)",
                 desc: "Z 世代顧客流失最嚴重，你要選擇邊個 Channel 及投放策略挽回佢哋？",
                 options: [
-                    { course: "PRAO3046 Audience Measurement", text: "📰 買下傳統報紙全頁頭條廣告", score: -10, feedback: "受眾錯配，年輕人根本不看報紙。" },
-                    { course: "PRAO4025 Brand Strategy", text: "🎤 重金邀請天王級明星代言", score: 0, feedback: "成本極高，但被質疑為「轉移視線」。" },
-                    { course: "PRAO3046 Audience Measurement", text: "📱 運用 Programmatic 數據精準投放 IG Reels 及 TikTok 互動挑戰賽", score: 20, feedback: "【PRAO3046 應用】精準捕捉 Z 世代眼球，廣告回報率最高！" }
+                    { course: "PRAO3046 Audience Measurement and Engagement", text: "📰 買下傳統報紙全頁頭條廣告", score: -10, feedback: "受眾錯配，年輕人根本不看報紙。" },
+                    { course: "PRAO4025 Brand Strategy and Communication", text: "🎤 重金邀請天王級明星代言", score: 0, feedback: "成本極高，但被質疑為「轉移視線」。" },
+                    { course: "PRAO3046 Audience Measurement and Engagement", text: "📱 運用 Programmatic 數據精準投放 IG Reels 及 TikTok 互動挑戰賽", score: 20, feedback: "【PRAO3046 應用】精準捕捉 Z 世代眼球，廣告回報率最高！" }
                 ]
             },
             {
                 round: "ROUND 4: 視覺與廣告設計 (Ad Design & Visuals)",
                 desc: "需要設計全新戶外廣告牌（OOH），邊個視覺風格最能重塑信心？",
                 options: [
-                    { course: "PRAO3007 Ad Design", text: "📸 使用真實員工與農夫的清透高畫質特寫，配上簡潔誓言文案", score: 20, feedback: "【PRAO3007 應用】視覺真實乾淨，大幅提升信賴感！" },
-                    { course: "PRAO3005 Ad Content", text: "📝 寫滿 500 字長文說教式說明", score: -10, feedback: "戶外廣告文字過多，路人根本無暇閱讀。" },
-                    { course: "PRAO3007 Ad Design", text: "💥 使用極其炫目、色彩極度混亂的卡通抽象插畫", score: -10, feedback: "資訊過載，未能突顯品質主題。" }
+                    { course: "PRAO3007 Advertising Design and Visualization", text: "📸 使用真實員工與農夫的清透高畫質特寫，配上簡潔誓言文案", score: 20, feedback: "【PRAO3007 應用】視覺真實乾淨，大幅提升信賴感！" },
+                    { course: "PRAO3005 Content Creation in Advertising", text: "📝 寫滿 500 字長文說教式說明", score: -10, feedback: "戶外廣告文字過多，路人根本無暇閱讀。" },
+                    { course: "PRAO3007 Advertising Design and Visualization", text: "💥 使用極其炫目、色彩極度混亂的卡通抽象插畫", score: -10, feedback: "資訊過載，未能突顯品質主題。" }
                 ]
             },
             {
                 round: "ROUND 5: 品牌重塑與敘事 (Brand Storytelling)",
                 desc: "最後階段，如何透過整合廣告 Campaign，將品牌重新定位？",
                 options: [
-                    { course: "PRAO4025 Brand Strategy", text: "🏷️ 實施全線產品買一送一優惠", score: 10, feedback: "折扣吸引人流，但削弱高端品牌形象。" },
-                    { course: "PRAO4037 Narrative Storytelling", text: "📖 推出「品質背後的堅持」跨媒體故事（Transmedia）宣傳", score: 20, feedback: "【PRAO4037 應用】成功建立情感連結，重建長遠 Brand Equity！" },
-                    { course: "PRAO3005 Ad Content", text: "🔄 隨便換一個全新 Logo 及包裝", score: -10, feedback: "治標不治本，顧客依然不信任品質。" }
+                    { course: "PRAO4025 Brand Strategy and Communication", text: "🏷️ 實施全線產品買一送一優惠", score: 10, feedback: "折扣吸引人流，但削弱高端品牌形象。" },
+                    { course: "PRAO4037 Narrative and Brand Storytelling", text: "📖 推出「品質背後的堅持」跨媒體故事（Transmedia）宣傳", score: 20, feedback: "【PRAO4037 應用】成功建立情感連結，重建長遠 Brand Equity！" },
+                    { course: "PRAO3005 Content Creation in Advertising", text: "🔄 隨便換一個全新 Logo 及包裝", score: -10, feedback: "治標不治本，顧客依然不信任品質。" }
                 ]
             }
         ]
     };
 
-    let selectedTrack = 'PR';
-    let currentRound = 0;
-    let score = 50;
-    let timer = 60;
-    let timerInterval = null;
-    let toastTimeout = null;   // 修正：管理 toast timeout
-    let isAnswering = false;   // 修正：防止連點重複計分
-    let gameEnded = false;     // 修正：防止重複結算
-    let unlockedBadges = [];
+    var selectedTrack = 'PR';
+    var currentRound = 0;
+    var score = 50;
+    var timer = 60;
+    var timerInterval = null;
+    var toastTimeout = null;
+    var isAnswering = false;
+    var gameEnded = false;
+    var unlockedBadges = [];
 
     function shuffleArray(array) {
-        const arr = [...array];
-        for (let i = arr.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [arr[i], arr[j]] = [arr[j], arr[i]];
+        var arr = array.slice();
+        for (var i = arr.length - 1; i > 0; i--) {
+            var j = Math.floor(Math.random() * (i + 1));
+            var tmp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = tmp;
         }
         return arr;
     }
@@ -595,7 +601,7 @@
         loadRound();
 
         clearInterval(timerInterval);
-        timerInterval = setInterval(() => {
+        timerInterval = setInterval(function () {
             timer--;
             document.getElementById('timer').innerText = timer + 's';
             if (timer <= 0) {
@@ -605,44 +611,47 @@
     }
 
     function loadRound() {
-        if (gameEnded) return; // 修正：遊戲已結束就不再載入
+        if (gameEnded) return;
 
-        const scenarios = tracksData[selectedTrack];
+        var scenarios = tracksData[selectedTrack];
         if (currentRound >= scenarios.length) {
             endGame();
             return;
         }
 
-        const data = scenarios[currentRound];
-        document.getElementById('roundTitle').innerText = `ROUND ${currentRound + 1} / ${scenarios.length}`;
-        document.getElementById('progressVal').innerText = `${currentRound + 1} / ${scenarios.length}`;
+        var data = scenarios[currentRound];
+        document.getElementById('roundTitle').innerText = 'ROUND ' + (currentRound + 1) + ' / ' + scenarios.length;
+        document.getElementById('progressVal').innerText = (currentRound + 1) + ' / ' + scenarios.length;
         document.getElementById('crisisDesc').innerText = data.desc;
 
-        const grid = document.getElementById('optionsGrid');
+        var grid = document.getElementById('optionsGrid');
         grid.innerHTML = '';
 
-        // 動態隨機打亂答案選項順序
-        const shuffledOptions = shuffleArray(data.options);
+        var shuffledOptions = shuffleArray(data.options);
 
-        shuffledOptions.forEach((opt) => {
-            const btn = document.createElement('button');
-            btn.type = 'button'; // 修正：避免未來若在 form 內會送出
+        shuffledOptions.forEach(function (opt) {
+            var btn = document.createElement('button');
+            btn.type = 'button';
             btn.className = 'option-btn';
-            btn.innerHTML = `<div class="course-tag">📘 ${opt.course}</div><div>${opt.text}</div>`;
-            btn.onclick = () => selectOption(opt.score, opt.feedback, opt.course, btn);
+            btn.innerHTML = '<div class="course-tag">📘 ' + opt.course + '</div><div>' + opt.text + '</div>';
+            btn.onclick = function () {
+                selectOption(opt.score, opt.feedback, opt.course);
+            };
             grid.appendChild(btn);
         });
     }
 
-    function selectOption(points, feedback, courseCode, btnEl) {
-        if (isAnswering || gameEnded) return; // 修正：鎖定避免連點 / 已結束
+    function selectOption(points, feedback, courseCode) {
+        if (isAnswering || gameEnded) return;
         isAnswering = true;
 
-        // 修正：即時禁用所有選項按鈕，避免視覺上仍可點擊
-        document.querySelectorAll('#optionsGrid .option-btn').forEach(b => b.disabled = true);
+        var allBtns = document.querySelectorAll('#optionsGrid .option-btn');
+        for (var i = 0; i < allBtns.length; i++) {
+            allBtns[i].disabled = true;
+        }
 
         score = Math.max(0, Math.min(100, score + points));
-        if (points > 0 && !unlockedBadges.includes(courseCode)) {
+        if (points > 0 && unlockedBadges.indexOf(courseCode) === -1) {
             unlockedBadges.push(courseCode);
         }
 
@@ -650,15 +659,13 @@
         currentRound++;
         updateStats();
 
-        // 修正：先判斷是否已是最後一回合，避免多餘的 loadRound() 呼叫
         if (currentRound >= tracksData[selectedTrack].length) {
-            // 稍微延遲讓玩家看到 toast 再結算
-            setTimeout(() => {
+            setTimeout(function () {
                 isAnswering = false;
                 endGame();
             }, 700);
         } else {
-            setTimeout(() => {
+            setTimeout(function () {
                 isAnswering = false;
                 loadRound();
             }, 500);
@@ -666,21 +673,20 @@
     }
 
     function showToast(msg) {
-        const toast = document.getElementById('toast');
-        // 修正：清除舊的 timeout，避免前一個 timeout 提早關閉新 toast
+        var toast = document.getElementById('toast');
         if (toastTimeout) clearTimeout(toastTimeout);
 
         toast.innerText = msg;
         toast.classList.add('show');
 
-        toastTimeout = setTimeout(() => {
+        toastTimeout = setTimeout(function () {
             toast.classList.remove('show');
             toastTimeout = null;
         }, 2200);
     }
 
     function updateStats() {
-        const fill = document.getElementById('meterFill');
+        var fill = document.getElementById('meterFill');
         fill.style.width = score + '%';
 
         if (score >= 70) {
@@ -693,12 +699,12 @@
     }
 
     function endGame() {
-        if (gameEnded) return; // 修正：避免計時器與最後一回合同時觸發重複結算
+        if (gameEnded) return;
         gameEnded = true;
         clearInterval(timerInterval);
         timerInterval = null;
 
-        updateStats(); // 修正：確保最後分數顯示一致
+        updateStats();
 
         document.getElementById('gameScreen').classList.remove('active');
         document.getElementById('statsBar').style.display = 'none';
@@ -706,8 +712,8 @@
 
         document.getElementById('finalScore').innerText = score + '%';
 
-        let title = '';
-        let desc = '';
+        var title = '';
+        var desc = '';
 
         if (selectedTrack === 'PR') {
             if (score >= 80) {
@@ -730,17 +736,16 @@
         document.getElementById('personaTitle').innerText = title;
         document.getElementById('personaDesc').innerText = desc;
 
-        const badgeList = document.getElementById('courseBadgeList');
+        var badgeList = document.getElementById('courseBadgeList');
         badgeList.innerHTML = '';
 
-        // 若玩家完全沒有拿到任何 badge，給予兩個基礎 badge 作為安慰／宣傳
         if (unlockedBadges.length === 0) {
             unlockedBadges = selectedTrack === 'PR'
-                ? ['PRAO3016 Crisis Comm', 'PRAO3026 Media Relations']
-                : ['PRAO3005 Ad Content', 'PRAO3046 Audience Analytics'];
+                ? ['PRAO4016 Strategic Issues and Crisis Management', 'PRAO4045 Media Relations Writing and Training']
+                : ['PRAO3005 Content Creation in Advertising', 'PRAO3046 Audience Measurement and Engagement'];
         }
-        unlockedBadges.forEach(b => {
-            const badge = document.createElement('span');
+        unlockedBadges.forEach(function (b) {
+            var badge = document.createElement('span');
             badge.className = 'badge-item';
             badge.innerText = '🎓 ' + b;
             badgeList.appendChild(badge);
@@ -748,7 +753,6 @@
     }
 
     function resetToStart() {
-        // 修正：重置所有狀態與計時器
         clearInterval(timerInterval);
         timerInterval = null;
         if (toastTimeout) {
